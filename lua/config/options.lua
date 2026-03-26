@@ -51,5 +51,34 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- Keymaps
+vim.keymap.set("i", "jj", "<Esc>", { desc = "Exit insert mode" })
+
+-- Statusline with colored mode indicator (like Helix color-modes)
+local function statusline()
+  local mode_map = {
+    ["n"]  = { "NOR", "StatusModeNormal" },
+    ["i"]  = { "INS", "StatusModeInsert" },
+    ["v"]  = { "VIS", "StatusModeVisual" },
+    ["V"]  = { "V-L", "StatusModeVisual" },
+    ["\22"] = { "V-B", "StatusModeVisual" },
+    ["c"]  = { "CMD", "StatusModeNormal" },
+    ["R"]  = { "REP", "StatusModeInsert" },
+    ["t"]  = { "TER", "StatusModeNormal" },
+  }
+  local mode = vim.fn.mode()
+  local info = mode_map[mode] or { "???", "StatusModeNormal" }
+  local parts = {
+    "%#" .. info[2] .. "# " .. info[1] .. " ",
+    "%#StatusLine# %f %m%r",
+    "%=",
+    "%l,%c %P ",
+  }
+  return table.concat(parts)
+end
+
+_G.Statusline = statusline
+vim.opt.statusline = "%!v:lua.Statusline()"
+
 -- Colorscheme
 vim.cmd.colorscheme("autumn-night")

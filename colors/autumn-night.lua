@@ -66,8 +66,11 @@ hi("ErrorMsg",     { fg = p.red, bold = true })
 hi("ModeMsg",      { fg = p.fg, bold = true })
 
 -- Statusline
-hi("StatusLine",     { fg = p.fg, bg = p.dark_gray })
-hi("StatusLineNC",   { fg = p.gray, bg = p.darker_gray })
+hi("StatusLine",       { fg = p.fg, bg = p.dark_gray })
+hi("StatusLineNC",     { fg = p.gray, bg = p.darker_gray })
+hi("StatusModeNormal", { fg = p.bg, bg = p.warm_tan, bold = true })
+hi("StatusModeInsert", { fg = p.bg, bg = p.terracotta, bold = true })
+hi("StatusModeVisual", { fg = p.bg, bg = p.burnt_orange, bold = true })
 
 -- Syntax (minimal — most things are fg color, like your Helix theme)
 hi("Comment",      { fg = p.comment })
